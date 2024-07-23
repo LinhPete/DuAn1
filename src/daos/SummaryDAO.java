@@ -30,7 +30,7 @@ public class SummaryDAO {
     }
     
     public int getCurrentSalesCount() throws SQLException, ClassNotFoundException{
-        String sql = "";
+        String sql = "call";
         return (int) XJdbc.callWithOutput(sql, 1, Types.INTEGER);
     }
 }
