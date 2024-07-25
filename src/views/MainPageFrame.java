@@ -37,18 +37,14 @@ public class MainPageFrame extends javax.swing.JFrame {
      * Creates new form MainPagFrame
      */
     public MainPageFrame() {
-        try {
-            XJdbc.openConnection("QLCUAHANG");
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(MainPageFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new ChaoJDialog(this, true).setVisible(true);
+        new LoginDialog(this, true).setVisible(true);
         initComponents();
         init();
         this.setLocationRelativeTo(null);
     }
 
     private void init() {
-        new ChaoJDialog(this, true).setVisible(true);
         setInteract(btnHome, btnEmployee, btnClient, btnProduct, btnAppliance, btnReceipt, btnSummary, btnProfile, btnLogout, btnExit);
         btnSet = btnMap.keySet();
         cards = (CardLayout) container.getLayout();

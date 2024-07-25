@@ -11,13 +11,13 @@ package entities;
 public class NhanVien {
     private String MaNV;
     private String MatKhau;
-    private String ChucVu;
+    private ChucVu ChucVu;
 
-    public String getChucVu() {
+    public ChucVu getChucVu() {
         return ChucVu;
     }
 
-    public void setChucVu(String ChucVu) {
+    public void setChucVu(ChucVu ChucVu) {
         this.ChucVu = ChucVu;
     }
 
