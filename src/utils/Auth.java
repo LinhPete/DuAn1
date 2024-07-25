@@ -34,14 +34,14 @@ public class Auth {
     }
     
     public static boolean isAdmin(){
-        return isLogin() && Auth.user.getChucVu().equals(ADMIN);
+        return isLogin() && Auth.user.getCv().equals(NhanVien.list.get(0));
     }
     
     public static boolean isBanHang(){
-        return isLogin() && Auth.user.getChucVu().equals(BAN_HANG);
+        return isLogin() && Auth.user.getCv().equals(NhanVien.list.get(1));
     }
     
     public static boolean isKho(){
-        return isLogin() && Auth.user.getChucVu().equals(KHO);
+        return isLogin() && Auth.user.getCv().equals(NhanVien.list.get(2));
     }
 }
