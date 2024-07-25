@@ -1173,10 +1173,10 @@ public class MainPageFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEmployeeMouseExited
 
     private void btnEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmployeeMouseClicked
-        if (!Auth.isAdmin()) {
-            MsgBox.alert(this, "Không đủ quyền hạn truy cập!!!");
-            return;
-        }
+//        if (!Auth.isAdmin()) {
+//            MsgBox.alert(this, "Không đủ quyền hạn truy cập!!!");
+//            return;
+//        }
         btnClicked(btnEmployee, () -> {
             showCard("");
         });

@@ -68,7 +68,7 @@ public class ChaoJDialog extends javax.swing.JDialog {
             @Override
             public void run() {
                 try {
-                    XJdbc.openConnection(1433, "QLCUAHANG", "sa", "19052002");
+                    XJdbc.openConnection("QLCUAHANG");
                     ChaoJDialog.this.dispose();
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ChaoJDialog.class.getName()).log(Level.SEVERE, null, ex);
