@@ -26,7 +26,7 @@ import utils.XJdbc;
  */
 public class MainPageFrame extends javax.swing.JFrame {
 
-    private final Color normalBackground = new Color(36, 103, 191);
+    private final Color normalBackground = new Color(135, 206, 235);
     private final Color hover = new Color(99, 216, 242);
     private final Color clicked = new Color(242, 171, 39);
     private Map<JPanel, Boolean> btnMap = new HashMap();
@@ -48,6 +48,7 @@ public class MainPageFrame extends javax.swing.JFrame {
     }
 
     private void init() {
+        new ChaoJDialog(this, true).setVisible(true);
         setInteract(btnHome, btnEmployee, btnClient, btnProduct, btnAppliance, btnReceipt, btnSummary, btnProfile, btnLogout, btnExit);
         btnSet = btnMap.keySet();
         cards = (CardLayout) container.getLayout();
@@ -247,7 +248,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(200, 581));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jPanel4.setBackground(new java.awt.Color(36, 103, 191));
+        jPanel4.setBackground(new java.awt.Color(135, 206, 235));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
         lblDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -261,6 +262,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/.png"))); // NOI18N
         jLabel3.setText("User");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -288,7 +290,7 @@ public class MainPageFrame extends javax.swing.JFrame {
 
         jPanel2.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
-        jPanel1.setBackground(new java.awt.Color(36, 103, 191));
+        jPanel1.setBackground(new java.awt.Color(135, 206, 235));
         jPanel1.setLayout(new java.awt.GridLayout(10, 1));
 
         btnHome.setBackground(new java.awt.Color(36, 103, 191));
@@ -308,14 +310,16 @@ public class MainPageFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/home-481-32.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/home.png"))); // NOI18N
         jLabel4.setText("Trang chủ");
 
         javax.swing.GroupLayout btnHomeLayout = new javax.swing.GroupLayout(btnHome);
         btnHome.setLayout(btnHomeLayout);
         btnHomeLayout.setHorizontalGroup(
             btnHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnHomeLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnHomeLayout.setVerticalGroup(
             btnHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,14 +345,16 @@ public class MainPageFrame extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/staff-management-14-32.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/job.png"))); // NOI18N
         jLabel5.setText("Nhân viên");
 
         javax.swing.GroupLayout btnEmployeeLayout = new javax.swing.GroupLayout(btnEmployee);
         btnEmployee.setLayout(btnEmployeeLayout);
         btnEmployeeLayout.setHorizontalGroup(
             btnEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnEmployeeLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnEmployeeLayout.setVerticalGroup(
             btnEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,14 +380,16 @@ public class MainPageFrame extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/customer-management-23-32.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/KháchHang.png"))); // NOI18N
         jLabel6.setText("Khách hàng");
 
         javax.swing.GroupLayout btnClientLayout = new javax.swing.GroupLayout(btnClient);
         btnClient.setLayout(btnClientLayout);
         btnClientLayout.setHorizontalGroup(
             btnClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnClientLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnClientLayout.setVerticalGroup(
             btnClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,14 +415,16 @@ public class MainPageFrame extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/app-icon-sales-order-48.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/SanPham.png"))); // NOI18N
         jLabel7.setText("Sản phẩm");
 
         javax.swing.GroupLayout btnProductLayout = new javax.swing.GroupLayout(btnProduct);
         btnProduct.setLayout(btnProductLayout);
         btnProductLayout.setHorizontalGroup(
             btnProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnProductLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnProductLayout.setVerticalGroup(
             btnProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,14 +450,16 @@ public class MainPageFrame extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lx-warehouse-32.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/VạtTu.png"))); // NOI18N
         jLabel8.setText("Vật tư");
 
         javax.swing.GroupLayout btnApplianceLayout = new javax.swing.GroupLayout(btnAppliance);
         btnAppliance.setLayout(btnApplianceLayout);
         btnApplianceLayout.setHorizontalGroup(
             btnApplianceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnApplianceLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnApplianceLayout.setVerticalGroup(
             btnApplianceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,14 +485,16 @@ public class MainPageFrame extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/order-information-1-32.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/invoice.png"))); // NOI18N
         jLabel9.setText("Hóa đơn");
 
         javax.swing.GroupLayout btnReceiptLayout = new javax.swing.GroupLayout(btnReceipt);
         btnReceipt.setLayout(btnReceiptLayout);
         btnReceiptLayout.setHorizontalGroup(
             btnReceiptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnReceiptLayout.createSequentialGroup()
+                .addGap(0, 19, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnReceiptLayout.setVerticalGroup(
             btnReceiptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,14 +520,16 @@ public class MainPageFrame extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/summary.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ThongKe.png"))); // NOI18N
         jLabel10.setText("Thống kê");
 
         javax.swing.GroupLayout btnSummaryLayout = new javax.swing.GroupLayout(btnSummary);
         btnSummary.setLayout(btnSummaryLayout);
         btnSummaryLayout.setHorizontalGroup(
             btnSummaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnSummaryLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnSummaryLayout.setVerticalGroup(
             btnSummaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -539,14 +555,16 @@ public class MainPageFrame extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/user-110-32.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/user (1).png"))); // NOI18N
         jLabel11.setText("Thiết lập");
 
         javax.swing.GroupLayout btnProfileLayout = new javax.swing.GroupLayout(btnProfile);
         btnProfile.setLayout(btnProfileLayout);
         btnProfileLayout.setHorizontalGroup(
             btnProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnProfileLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnProfileLayout.setVerticalGroup(
             btnProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -578,14 +596,16 @@ public class MainPageFrame extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logout-26-32.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logout (1).png"))); // NOI18N
         jLabel12.setText("Đăng xuất");
 
         javax.swing.GroupLayout btnLogoutLayout = new javax.swing.GroupLayout(btnLogout);
         btnLogout.setLayout(btnLogoutLayout);
         btnLogoutLayout.setHorizontalGroup(
             btnLogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnLogoutLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnLogoutLayout.setVerticalGroup(
             btnLogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -611,14 +631,16 @@ public class MainPageFrame extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/exit.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/turn-off.png"))); // NOI18N
         jLabel13.setText("Thoát");
 
         javax.swing.GroupLayout btnExitLayout = new javax.swing.GroupLayout(btnExit);
         btnExit.setLayout(btnExitLayout);
         btnExitLayout.setHorizontalGroup(
             btnExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnExitLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnExitLayout.setVerticalGroup(
             btnExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

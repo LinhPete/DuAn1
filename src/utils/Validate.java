@@ -20,6 +20,11 @@ public class Validate {
         String regex = "\\p{L}+[\\p{L}\\p{M}\\p{Pd}'’]*\\p{L}+";
         return name.matches(regex);
     }
+    
+    public static boolean checkName(String name){
+        String regax = "[a-zA-Z ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỂưăạảấầẩẫậắằẳẵặẹẻẽềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+";
+        return name.matches(regax);      
+    }
 
     /**
      *Validate the given String whether its resembles an email address
