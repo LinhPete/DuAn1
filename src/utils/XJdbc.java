@@ -96,7 +96,7 @@ public final class XJdbc {
         int result;
         try (PreparedStatement prst = con.prepareStatement(sql)) {
             for (int i = 0; i < args.length; i++) {
-                prst.setObject(i+1, i);
+                prst.setObject(i+1, args[i]);
             }
             result = prst.executeUpdate();
         }
