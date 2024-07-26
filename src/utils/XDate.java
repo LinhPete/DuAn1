@@ -14,11 +14,11 @@ import java.util.Date;
  */
 public class XDate {
 
-    static SimpleDateFormat formater = new SimpleDateFormat();
+//    private static SimpleDateFormat formater = new SimpleDateFormat();
 
     public static Date toDate(String date, String pattern) {
         try {
-            formater.applyPattern(pattern);
+            SimpleDateFormat formater = new SimpleDateFormat(pattern);
             return formater.parse(date);
         } catch (ParseException ex) {
             throw new RuntimeException(ex);
@@ -26,7 +26,7 @@ public class XDate {
     }
 
     public static String toString(Date date, String pattern) {
-        formater.applyPattern(pattern);
+        SimpleDateFormat formater = new SimpleDateFormat(pattern);
         return formater.format(date);
     }
     
@@ -37,7 +37,7 @@ public class XDate {
     
     public static boolean validate(String date, String pattern){
         try {
-            formater.applyPattern(pattern);
+            SimpleDateFormat formater = new SimpleDateFormat(pattern);
             formater.parse(date);
             return true;
         } catch (ParseException ex) {

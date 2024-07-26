@@ -6,7 +6,7 @@ package entities;
 
 /**
  *
- * @author ndhlt
+ * @author tai30
  */
 public class ChucVu {
     private String MaCV;
@@ -26,6 +26,11 @@ public class ChucVu {
 
     public void setTenCV(String TenCV) {
         this.TenCV = TenCV;
+    }
+    
+    public boolean equals(ChucVu e){
+        return this.MaCV.equals(e.getMaCV())&&
+                this.TenCV.equals(e.getTenCV());
     }
     
 }

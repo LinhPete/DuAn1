@@ -39,7 +39,7 @@ public final class XJdbc {
 //            XJdbc.database = database;
         }
     }
-    
+
     public static void openCustomConnection(String customUrl, String user, String pass) throws ClassNotFoundException, SQLException {
         if (con == null || con.isClosed()) {
             con = DriverManager.getConnection(customUrl, user, pass);
@@ -50,7 +50,7 @@ public final class XJdbc {
 //                    break;
 //                }
 //            }
-            
+
         }
     }
 
@@ -67,9 +67,9 @@ public final class XJdbc {
 //            XJdbc.database = database;
         }
     }
-    
-    public static void closeConnection() throws SQLException{
-        if(con!=null && !con.isClosed()){
+
+    public static void closeConnection() throws SQLException {
+        if (con != null && !con.isClosed()) {
             con.close();
 //            XJdbc.database = null;
         }
@@ -94,18 +94,12 @@ public final class XJdbc {
 
     public static final int IUD(String sql, Object... args) throws SQLException, ClassNotFoundException {
         int result;
-            if (args.length > 0) {
-                try (PreparedStatement prst = con.prepareStatement(sql)) {
-                    for (int i = 0; i < args.length; i++) {
-                        prst.setObject(i + 1, args[i]);
-                    }
-                    result = prst.executeUpdate();
-                }
-            } else {
-                try (Statement st = con.createStatement()) {
-                    result = st.executeUpdate(sql);
-                }
+        try (PreparedStatement prst = con.prepareStatement(sql)) {
+            for (int i = 0; i < args.length; i++) {
+                prst.setObject(i+1, i);
             }
+            result = prst.executeUpdate();
+        }
         return result;
     }
 
