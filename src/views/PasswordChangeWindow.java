@@ -100,10 +100,11 @@ public class PasswordChangeWindow extends EntityController<NhanVien> {
         boolean result = MsgBox.confirm(this, "Xác nhận đổi mật khẩu ?");
         if (result) {
             dao.update(temp);
+            MsgBox.inform(returnWindow, "Đổi mật khẩu thành công");
             Auth.clear();
             this.dispose();
             returnWindow.dispose();
-//            new LoginWindow().setVisible(true);
+            new MainPageFrame().setVisible(true);
         }
     }
 
@@ -308,7 +309,6 @@ public class PasswordChangeWindow extends EntityController<NhanVien> {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         this.dispose();
-        returnWindow.setVisible(true);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnshowCurrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnshowCurrActionPerformed

@@ -20,7 +20,7 @@ public class XImage {
     }
     
     public static void save(File src){
-        File dst = new File("img",src.getName());
+        File dst = new File("resources",src.getName());
         if(!dst.getParentFile().exists()){
             dst.getParentFile().mkdirs();
         }
@@ -28,12 +28,17 @@ public class XImage {
     }
     
     public static ImageIcon read(String fileName){
-        File path = new File("img", fileName);
+        File path = new File("resources", fileName);
         return new ImageIcon(path.getAbsolutePath());
     }
     
     public static ImageIcon getResized(ImageIcon img, int WIDTH, int HEIGHT){
         Image resize = img.getImage().getScaledInstance(WIDTH, HEIGHT, Image.SCALE_SMOOTH);
         return new ImageIcon(resize);
+    }
+    
+    public static String getPath(String fileName){
+        File Path = new File("resources",fileName);
+        return Path.getAbsolutePath();
     }
 }

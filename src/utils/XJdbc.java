@@ -5,6 +5,8 @@
 package utils;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -96,7 +98,18 @@ public final class XJdbc {
         int result;
         try (PreparedStatement prst = con.prepareStatement(sql)) {
             for (int i = 0; i < args.length; i++) {
-                prst.setObject(i+1, args[i]);
+//                if (args[i] instanceof Date date) {
+//                    prst.setDate(i + 1, date);
+//                } else if (args[i] instanceof String string) {
+//                    prst.setString(i + 1, string);
+//                } else if(args[i] instanceof Double){
+//                    prst.setDouble(i + 1, (double) args[i]);
+//                } else if(args[i] instanceof Integer){
+//                    prst.setInt(i + 1, (int) args[i]);
+//                }
+//                else{
+                    prst.setObject(i + 1, args[i]);
+//                }
             }
             result = prst.executeUpdate();
         }
@@ -130,5 +143,16 @@ public final class XJdbc {
 //        Object packedRs = cst.getResultSet();
 //        Integer updateCount = cst.getUpdateCount();
         return cst.getObject(output);
+    }
+
+    public static <T> T getValue(String sql, Object... values) {
+        try {
+            ResultSet rs = (ResultSet) XJdbc.select(sql, values);
+            rs.next();
+            return (T) rs.getObject(1);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(XJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

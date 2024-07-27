@@ -39,7 +39,7 @@ public class NhanVienDAO extends DAOs<NhanVien, String> {
         String sql = "UPDATE NhanVien SET MatKhau=?, HoVaTen=?, MaCV=?, NgaySinh=?,GioiTinh=?,DiaChi=?,SDT =?,Email=?,Hinh=?  WHERE MaNV=?";
         try {
             i = XJdbc.IUD(sql,
-                    e.getMatKhau(),e.getHoVaTen(),e.getCv(),e.getNgaySinh(), e.isGioiTinh(), e.getDiaChi(),
+                    e.getMatKhau(),e.getHoVaTen(),e.getCv().getMaCV(),e.getNgaySinh(), e.isGioiTinh(), e.getDiaChi(),
                 e.getSDT(), e.getEmail(), e.getHinh(),e.getMaNV());
         } catch (SQLException | ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(KhachHangDAO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

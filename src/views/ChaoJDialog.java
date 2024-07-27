@@ -8,7 +8,6 @@ package views;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
 import utils.XJdbc;
 
 /**
@@ -66,7 +65,7 @@ public class ChaoJDialog extends javax.swing.JDialog {
             @Override
             public void run() {
                 try {
-                    XJdbc.openConnection("QLCUAHANG");
+                    XJdbc.openConnection("QLBANNUOC");
                     ChaoJDialog.this.dispose();
                 } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(ChaoJDialog.class.getName()).log(Level.SEVERE, null, ex);
