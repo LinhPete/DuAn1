@@ -20,11 +20,11 @@ public class SanPhamImple implements SanPhamDAO{
             ResultSet rs = (ResultSet) XJdbc.select(sql, agrs);
             while(rs.next()){
                 SanPham sp = new SanPham();
-                sp.setMaSP(rs.getString("MASP"));
-                sp.setLoaiSP(rs.getString("LoaiSP"));
-                sp.setTenSP(rs.getString("TENSANPHAM"));
-                sp.setGiaTien(Double.valueOf(rs.getString("GiaTien")));
-                sp.setHinh(rs.getString("hinh"));
+                sp.setMaSP(rs.getString(1));
+                sp.setLoaiSP(rs.getString(2));
+                sp.setTenSP(rs.getString(3));
+                sp.setGiaTien(Double.valueOf(rs.getString(4)));
+                sp.setHinh(rs.getString(5));
                 list.add(sp);
             }
         } catch (ClassNotFoundException | NumberFormatException | SQLException e){
@@ -35,20 +35,20 @@ public class SanPhamImple implements SanPhamDAO{
 
     @Override
     public SanPham getItemsByMaSP(String MaSP) {
-        String sql = " SELECT * FROM SANPHAM WHERE MASP = ?";
+        String sql = " SELECT * FROM SanPham WHERE MASP = ?";
         List <SanPham> list = this.selectBySQl(sql,MaSP);
         return !list.isEmpty()? list.get(0):null;
     }
 
     @Override
     public List<SanPham> getItems(String LOAISP) {
-        String sql = " SELECT * FROM SANPHAM WHERE LOAISP LIKE ?";
+        String sql = " SELECT * FROM SanPham WHERE LOAISP LIKE ?";
         return this.selectBySQl(sql,"%"+LOAISP+"%");
     }
 
     @Override
     public void insertSanPham(SanPham Entity) {
-        String sql = " INSERT INTO SANPHAM (LOAISP,TENSANPHAM,GIATIEN,HINH) VALUES (? ,? ,? ,?)";
+        String sql = " INSERT INTO SanPham (LOAISP,TENSANPHAM,GIATIEN,HINH) VALUES (? ,? ,? ,?)";
         Object [] values ={
             Entity.getLoaiSP(),
             Entity.getTenSP(),
@@ -64,7 +64,7 @@ public class SanPhamImple implements SanPhamDAO{
 
     @Override
     public List<SanPham> getItemsByID(String tensp) {
-        String sql = " SELECT * FROM SANPHAM WHERE TENSP LIKE ? ";
+        String sql = " SELECT * FROM SanPham WHERE TENSANPHAM LIKE ? ";
         return this.selectBySQl(sql, "%"+tensp+"%");
     }
 

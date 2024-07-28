@@ -5,6 +5,15 @@ public class ChiTietSanPham {
     private String maSP;
     private String maNL;
     private int soLuong;
+    private Double giaVon;
+
+    public Double getGiaVon() {
+        return giaVon;
+    }
+
+    public void setGiaVon(Double giaVon) {
+        this.giaVon = giaVon;
+    }
 
     public ChiTietSanPham() {
     }

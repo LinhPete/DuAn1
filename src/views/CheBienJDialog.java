@@ -44,6 +44,8 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
         lblImage = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtGiaBan = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtGiaVon = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -114,6 +116,13 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
 
         txtGiaBan.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
 
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel10.setText("Giá vốn:");
+        jLabel10.setToolTipText("");
+
+        txtGiaVon.setEditable(false);
+        txtGiaVon.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -121,13 +130,6 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
@@ -139,7 +141,20 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(72, 72, 72)))
+                        .addGap(72, 72, 72))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtGiaVon, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(74, 74, 74)))
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -165,7 +180,11 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtGiaVon, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -235,7 +254,7 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
                 .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -338,12 +357,12 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1360, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
+                .addComponent(jSplitPane1)
                 .addContainerGap())
         );
 
@@ -420,6 +439,7 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private button.ButtonCustom btnThemSP;
     private javax.swing.JComboBox<String> cboLoaiSP;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -440,6 +460,7 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
     private customjtable.CustomJTable tblNguyenLieu;
     private customjtable.CustomJTable tblThanhPhan;
     private javax.swing.JTextField txtGiaBan;
+    private javax.swing.JTextField txtGiaVon;
     private javax.swing.JTextPane txtMaSP;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTenSP;
@@ -478,14 +499,14 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
         JFileChooser chooser = new JFileChooser();
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = chooser.getSelectedFile();
-            XImage.save(file);
+            XImage.save("ProdImages", file);
             this.prepareSetImage(file.getName());
         }
     }
 
     public void prepareSetImage(String nameFile) {
         try {
-            ImageIcon Icon = XImage.read(nameFile);
+            ImageIcon Icon = XImage.read("ProdImages", nameFile);
             lblImage.setIcon(Icon);
             Image im = Icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
             Icon.setImage(im);
@@ -519,7 +540,7 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
                 Object[] row = {
                     nl.getMaNL(),
                     nl.getTenNL(),
-                    XImage.getPath(nl.getHinh()),};
+                    nl.getHinh()};
                 model.addRow(row);
             }
             XTable.insertImage(tblNguyenLieu, 2, 100, 100, "IngriImages");
@@ -544,21 +565,25 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
         DefaultTableModel model = (DefaultTableModel) tblThanhPhan.getModel();
         maSP = spdao.createMaSP();
         if (Validate.number(txtGiaBan.getText())) {
-            if (txtTenSP.getText() != null && lblImage.getToolTipText() != null) {
-                if (model.getRowCount() > 0) {
-                    SanPham sp = new SanPham();
-                    sp.setLoaiSP(cboLoaiSP.getSelectedItem() + "");
-                    sp.setTenSP(txtTenSP.getText());
-                    sp.setGiaTien(Double.valueOf(txtGiaBan.getText()));
-                    sp.setHinh(lblImage.getToolTipText());
-                    spdao.insertSanPham(sp);
-                    this.insertCTSanPham();
-                    MsgBox.alert(this, "Thêm sản phẩm thành công");
+            if (this.checkGiaban()) {
+                if (txtTenSP.getText() != null && lblImage.getToolTipText() != null) {
+                    if (model.getRowCount() > 0) {
+                        SanPham sp = new SanPham();
+                        sp.setLoaiSP(cboLoaiSP.getSelectedItem() + "");
+                        sp.setTenSP(txtTenSP.getText());
+                        sp.setGiaTien(Double.valueOf(txtGiaBan.getText()));
+                        sp.setHinh(lblImage.getToolTipText());
+                        spdao.insertSanPham(sp);
+                        this.insertCTSanPham();
+                        MsgBox.alert(this, "Thêm sản phẩm thành công");
+                    } else {
+                        MsgBox.alert(this, "Thành phần không được để trống !!");
+                    }
                 } else {
-                    MsgBox.alert(this, "Thành phần không được để trống !!");
+                    MsgBox.alert(this, "Tên và hình không được để trống !!");
                 }
             } else {
-                MsgBox.alert(this, "Tên và hình không được để trống !!");
+                MsgBox.alert(this, "Giá bán phải lớn hơn giá vốn !!");
             }
         } else {
             MsgBox.alert(this, "Sai định dạng giá bán !!");
@@ -575,6 +600,7 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
             ctsp.setMaSP(maSP);
             ctsp.setMaNL(model.getValueAt(i, 0) + "");
             ctsp.setSoLuong(Integer.parseInt(model.getValueAt(i, 2) + ""));
+            ctsp.setGiaVon(Double.valueOf(txtGiaVon.getText()));
             ctspdao.insert(ctsp);
         }
         this.resetForm();
@@ -587,6 +613,7 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
         txtGiaBan.setText("");
         lblImage.setIcon(null);
         lblImage.setToolTipText("");
+        txtGiaVon.setText("");
         model.setRowCount(0);
     }
 
@@ -604,7 +631,7 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
 
     public void checkSLThanhPhan() {
         DefaultTableModel model = (DefaultTableModel) tblThanhPhan.getModel();
-        Integer soLuong = null;
+        Integer soLuong;
         String sl = MsgBox.prompt(this, "Nhập số lượng");
         if (Validate.positiveInt(sl)) {
             soLuong = Integer.valueOf(sl);
@@ -615,5 +642,22 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
         } else {
             MsgBox.alert(this, "Số lượng phải là nguyên dương !!");
         }
+    }
+
+    public void giaVon() {
+        Double giaVon = 0.0;
+        DefaultTableModel model = (DefaultTableModel) tblThanhPhan.getModel();
+        for (int i = 0; i < tblThanhPhan.getRowCount(); i++) {
+            NguyenLieu nl = nldao.selectByID(model.getValueAt(i, 0) + "");
+            Double minGia = Math.ceil(nl.getGiaTien() / nl.getTonKho());
+            giaVon += minGia * (Integer.valueOf(model.getValueAt(i, 2) + ""));
+        }
+        txtGiaVon.setText(giaVon + "");
+    }
+
+    private boolean checkGiaban() {
+        Double giaBan = Double.valueOf(txtGiaBan.getText());
+        Double giaVon = Double.valueOf(txtGiaVon.getText());
+        return (giaBan - giaVon) > 0;
     }
 }

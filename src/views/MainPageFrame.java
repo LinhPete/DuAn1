@@ -7,6 +7,7 @@ package views;
 import controlls.ApplianceController;
 import controlls.ClientController;
 import controlls.EmployeeController;
+import controlls.ProductController;
 import controlls.ProfileController;
 import controlls.ReceiptController;
 import java.awt.CardLayout;
@@ -76,6 +77,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         ApplianceController.initialize(this, tblNL_SP, txtmasp_KH, txtTSP_KH, txtDonVI_SP, txtGT_SP, txtTKHo_SP, txtTThieu_SP, lblhinh_SP, btndatlai_SP, btnthem_SP, btnsua_SP, btnxoa_SP);
         ReceiptController.initialize(this, tblHoaDon, tblCTHoaDon, txtTimHD, cboTime);
         ProfileController.initialize(this, txtMaNV, txtMatKhau, txtHoTen, Prof_txtMaCV, Prof_txtNgaySinh, Prof_rdoNam, Prof_rdoNu, Prof_txtSDT, Prof_txtEmail, Prof_txtDiaChi, Prof_lblHinh);
+        ProductController.initialize(this, tblSanPham);
     }
 
     private void getController() {
@@ -84,6 +86,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         ApplianceController.getComponents(this, tblNL_SP, txtmasp_KH, txtTSP_KH, txtDonVI_SP, txtGT_SP, txtTKHo_SP, txtTThieu_SP, lblhinh_SP, btndatlai_SP, btnthem_SP, btnsua_SP, btnxoa_SP);
         ReceiptController.getComponents(this, tblHoaDon, tblCTHoaDon, txtTimHD, cboTime);
         ProfileController.getComponents(this, txtMaNV, txtMatKhau, txtHoTen, Prof_txtMaCV, Prof_txtNgaySinh, Prof_rdoNam, Prof_rdoNu, Prof_txtSDT, Prof_txtEmail, Prof_txtDiaChi, Prof_lblHinh);
+        ProductController.getComponents(this, tblSanPham);
     }
 
     private void runController(Runnable run) {
@@ -261,6 +264,10 @@ public class MainPageFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblClient = new javax.swing.JTable();
         jLabel26 = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblSanPham = new customjtable.CustomJTable();
+        txtTaoSP = new button.ButtonCustom();
         jPanel22 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
@@ -1292,6 +1299,59 @@ public class MainPageFrame extends javax.swing.JFrame {
 
         container.add(jPanel13, "khachHang");
 
+        tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "MÃ SP", "HÌNH", "LOẠI SP", "TÊN SẢN PHẨM", "GIÁ"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblSanPham);
+
+        txtTaoSP.setText("TẠO SẢN PHẨM");
+        txtTaoSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTaoSPActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1167, Short.MAX_VALUE)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(txtTaoSP, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtTaoSP, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        container.add(jPanel14, "sanPham");
+
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Quản Lý Kho Hàng");
@@ -1952,7 +2012,12 @@ public class MainPageFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProductMouseExited
 
     private void btnProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductMouseClicked
-        btnClicked(btnProduct, null);
+        btnClicked(btnProduct, ()->{
+            showCard("sanPham");
+            runController(()->{
+                ProductController.fillTableSanPham();
+            });
+        });
     }//GEN-LAST:event_btnProductMouseClicked
 
     private void btnApplianceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApplianceMouseEntered
@@ -2219,6 +2284,12 @@ public class MainPageFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Prof_lblHinhMouseClicked
 
+    private void txtTaoSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTaoSPActionPerformed
+runController(()->{
+    ProductController.chuyenTrang();
+});
+    }//GEN-LAST:event_txtTaoSPActionPerformed
+
     private void exit() {
         if (!Auth.isAdmin()) {
             MsgBox.alert(this, "Không đủ quyền hạn truy cập!!!");
@@ -2228,9 +2299,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         if (res) {
             System.exit(0);
         } else {
-            btnClicked(btnHome, () -> {
-                showCard("trangChu");
-            });
+            btnReset(btnExit);
         }
     }
 
@@ -2374,6 +2443,7 @@ public class MainPageFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel21;
@@ -2389,6 +2459,7 @@ public class MainPageFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -2416,6 +2487,7 @@ public class MainPageFrame extends javax.swing.JFrame {
     private customjtable.CustomJTable tblHoaDon;
     private javax.swing.JTable tblNL_SP;
     private javax.swing.JTable tblNhanVien;
+    private customjtable.CustomJTable tblSanPham;
     private javax.swing.JTextField txtDonVI_SP;
     private javax.swing.JTextField txtGT_SP;
     private javax.swing.JTextField txtHoTen;
@@ -2428,6 +2500,7 @@ public class MainPageFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtTKHo_SP;
     private javax.swing.JTextField txtTSP_KH;
     private javax.swing.JTextField txtTThieu_SP;
+    private button.ButtonCustom txtTaoSP;
     private javax.swing.JTextField txtTenClient;
     private javax.swing.JTextField txtTimHD;
     private javax.swing.JTextArea txtdiachi_NV;

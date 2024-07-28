@@ -242,6 +242,7 @@ public class EmployeeController {
         File file = new File("EmpImages", kh.getHinh());
         if (!file.exists()) {
             lblhinh.setText(kh.getHinh());
+            lblhinh.setIcon(null);
         } else {
             lblhinh.setIcon(XImage.getResized(XImage.read("EmpImages", kh.getHinh()), lblhinh.getWidth(), lblhinh.getHeight()));
             lblhinh.setToolTipText(kh.getHinh());

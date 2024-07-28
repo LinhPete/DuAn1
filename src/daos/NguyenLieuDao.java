@@ -38,8 +38,8 @@ public class NguyenLieuDao extends DAOs<NguyenLieu, String> {
                     rs.getDouble("GIATIEN"),
                     rs.getInt("TonKho"),
                     rs.getInt("ToiThieu"),
-                    rs.getString("Hinh"),
-                    rs.getString("DONVI")
+                    rs.getString("DONVI"),
+                    rs.getString("Hinh")
                     );
                     list.add(entity);
                 }
@@ -64,11 +64,10 @@ public class NguyenLieuDao extends DAOs<NguyenLieu, String> {
 
     @Override
     public int insert(NguyenLieu e) {
-        String sql = "INSERT INTO NGUYENLIEU (MaNL, TenNL, GIATIEN, TonKho, ToiThieu, Hinh, DONVI) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO NGUYENLIEU (TenNL, GIATIEN, TonKho, ToiThieu, Hinh, DONVI) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             return XJdbc.IUD(
                 sql,
-                e.getMaNL(),
                 e.getTenNL(),
                 e.getGiaTien(),
                 e.getTonKho(),

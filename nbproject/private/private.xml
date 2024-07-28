@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ndhlt/OneDrive/Documents/NetBeansProjects/DuAn1/src/views/CreateOrdersJFrame.java</file>
+            <file>file:/C:/Users/ndhlt/OneDrive/Documents/NetBeansProjects/DuAn1/src/controlls/ProductController.java</file>
+            <file>file:/C:/Users/ndhlt/OneDrive/Documents/NetBeansProjects/DuAn1/src/views/CheBienJDialog.java</file>
+            <file>file:/C:/Users/ndhlt/OneDrive/Documents/NetBeansProjects/DuAn1/src/daoImpl/SanPhamImple.java</file>
+            <file>file:/C:/Users/ndhlt/OneDrive/Documents/NetBeansProjects/DuAn1/src/utils/XJdbc.java</file>
+            <file>file:/C:/Users/ndhlt/OneDrive/Documents/NetBeansProjects/DuAn1/src/views/MainPageFrame.java</file>
         </group>
     </open-files>
 </project-private>

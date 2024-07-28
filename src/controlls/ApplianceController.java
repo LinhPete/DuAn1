@@ -86,7 +86,6 @@ public class ApplianceController {
     }
 
     public static void fillTable() {
-
         DefaultTableModel model = (DefaultTableModel) tblNL_SP.getModel();
         model.setRowCount(0);
         try {
@@ -103,6 +102,7 @@ public class ApplianceController {
                 };
                 model.addRow(row);
             }
+            tblNL_SP.setModel(model);
             XTable.insertImage(tblNL_SP, 0, 100, 100, "IngriImages");
         } catch (Exception e) {
             MsgBox.alert(frame, "Lỗi truy vấn dữ liệu!");
@@ -139,19 +139,17 @@ public class ApplianceController {
 
     public static void update() {
         NguyenLieu model = getForm();
-        try {
-            NguyenLieu og = dao.selectByID(model.getMaNL());
-            if (!og.getHinh().equals(model.getHinh())) {
-                File ogFile = new File("IngriImages", og.getHinh());
-                ogFile.delete();
+        NguyenLieu og = dao.selectByID(model.getMaNL());
+        if (!og.getHinh().equals(model.getHinh())) {
+            File ogFile = new File("IngriImages", og.getHinh());
+            ogFile.delete();
+            if (img != null) {
                 XImage.save("IngriImages", img);
             }
-            dao.update(model);
-            fillTable();
-            MsgBox.alert(frame, "Cập nhật thành công!");
-        } catch (Exception e) {
-            MsgBox.alert(frame, "Cập nhật thất bại!");
         }
+        dao.update(model);
+        fillTable();
+        MsgBox.alert(frame, "Cập nhật thành công!");
     }
 
     public static void delete() {
@@ -199,11 +197,14 @@ public class ApplianceController {
         txtTKHo_SP.setText(String.valueOf(nl.getTonKho()));
         txtTThieu_SP.setText(String.valueOf(nl.getToiThieu()));
         File file = new File("IngriImages", nl.getHinh());
-        if (!file.exists()) {
-            lblhhinh_SP.setText(nl.getHinh());
-        } else {
+        if (file.exists()) {
+            lblhhinh_SP.setText("");
             lblhhinh_SP.setIcon(XImage.getResized(XImage.read("IngriImages", nl.getHinh()), lblhhinh_SP.getWidth(), lblhhinh_SP.getHeight()));
             lblhhinh_SP.setToolTipText(nl.getHinh());
+        }
+        else{
+            lblhhinh_SP.setIcon(null);
+            lblhhinh_SP.setText("NONE");
         }
         txtDonVI_SP.setText(nl.getDonVi());
     }
@@ -217,7 +218,7 @@ public class ApplianceController {
         String hinh = lblhhinh_SP.getToolTipText();
         String donVi = txtDonVI_SP.getText();
 
-        return new NguyenLieu(maNL, tenNL, giaTien, tonKho, toiThieu, hinh, donVi);
+        return new NguyenLieu(maNL, tenNL, giaTien, tonKho, toiThieu, donVi, hinh);
     }
 
     private static void updateStatus() {
