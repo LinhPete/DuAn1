@@ -18,8 +18,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import utils.Auth;
 import utils.MsgBox;
@@ -395,15 +393,18 @@ public class MainPageFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(side_lblPic, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(side_lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(side_lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(side_lblPic, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(side_lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-            .addComponent(side_lblPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(side_lblPic, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(side_lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel4.add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -443,7 +444,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         );
         btnHomeLayout.setVerticalGroup(
             btnHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
         sideNav.add(btnHome);
@@ -478,7 +479,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         );
         btnEmployeeLayout.setVerticalGroup(
             btnEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
         sideNav.add(btnEmployee);
@@ -513,7 +514,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         );
         btnClientLayout.setVerticalGroup(
             btnClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
         sideNav.add(btnClient);
@@ -548,7 +549,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         );
         btnProductLayout.setVerticalGroup(
             btnProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
         sideNav.add(btnProduct);
@@ -583,7 +584,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         );
         btnApplianceLayout.setVerticalGroup(
             btnApplianceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
         sideNav.add(btnAppliance);
@@ -618,7 +619,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         );
         btnReceiptLayout.setVerticalGroup(
             btnReceiptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
         sideNav.add(btnReceipt);
@@ -653,7 +654,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         );
         btnSummaryLayout.setVerticalGroup(
             btnSummaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
         sideNav.add(btnSummary);
@@ -688,7 +689,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         );
         btnProfileLayout.setVerticalGroup(
             btnProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
         sideNav.add(btnProfile);
@@ -904,19 +905,9 @@ public class MainPageFrame extends javax.swing.JFrame {
 
         buttonGroup3.add(rdoNvNam);
         rdoNvNam.setText("Nam");
-        rdoNvNam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoNvNamActionPerformed(evt);
-            }
-        });
 
         buttonGroup3.add(rdoNvNu);
         rdoNvNu.setText("Nữ");
-        rdoNvNu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoNvNuActionPerformed(evt);
-            }
-        });
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1126,7 +1117,7 @@ public class MainPageFrame extends javax.swing.JFrame {
                                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btndatlaiNv, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btncapnhatNV, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 361, Short.MAX_VALUE))
+                        .addGap(0, 364, Short.MAX_VALUE))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane6)))
@@ -1248,7 +1239,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1176, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1179, Short.MAX_VALUE)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1441,7 +1432,7 @@ public class MainPageFrame extends javax.swing.JFrame {
                                                 .addComponent(lblhinh_SP, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(18, 18, 18)
                                 .addComponent(btndatlai_SP)))
-                        .addGap(0, 337, Short.MAX_VALUE))
+                        .addGap(0, 340, Short.MAX_VALUE))
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane7)))
@@ -1543,7 +1534,7 @@ public class MainPageFrame extends javax.swing.JFrame {
                 .addGroup(pnlTimHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtTimHD)
                     .addComponent(cboTime, 0, 274, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 626, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 629, Short.MAX_VALUE)
                 .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
@@ -1676,7 +1667,7 @@ public class MainPageFrame extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel18)
-                        .addGap(0, 497, Short.MAX_VALUE))
+                        .addGap(0, 498, Short.MAX_VALUE))
                     .addComponent(Prof_txtNgaySinh))
                 .addContainerGap())
         );
@@ -1715,7 +1706,7 @@ public class MainPageFrame extends javax.swing.JFrame {
                         .addComponent(Prof_rdoNam)
                         .addGap(18, 18, 18)
                         .addComponent(Prof_rdoNu)))
-                .addContainerGap(456, Short.MAX_VALUE))
+                .addContainerGap(457, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1747,7 +1738,7 @@ public class MainPageFrame extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel19)
-                        .addGap(0, 495, Short.MAX_VALUE))
+                        .addGap(0, 496, Short.MAX_VALUE))
                     .addComponent(Prof_txtSDT))
                 .addContainerGap())
         );
@@ -1778,7 +1769,7 @@ public class MainPageFrame extends javax.swing.JFrame {
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(Prof_txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE))
+                    .addComponent(Prof_txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -2104,18 +2095,6 @@ public class MainPageFrame extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_tblClientMouseClicked
 
-    private void rdoNvNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNvNamActionPerformed
-        //runController(()->{
-        //            EmployeeController.
-        //        });
-    }//GEN-LAST:event_rdoNvNamActionPerformed
-
-    private void rdoNvNuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNvNuActionPerformed
-        //runController(()->{
-        //            EmployeeController.
-        //        });
-    }//GEN-LAST:event_rdoNvNuActionPerformed
-
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
         runController(() -> {
             EmployeeController.tableClick();
@@ -2123,9 +2102,9 @@ public class MainPageFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tblNhanVienMouseClicked
 
     private void lblhinhNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhinhNVMouseClicked
-        //runController(()->{
-        //            EmployeeController.
-        //        });
+        runController(() -> {
+            EmployeeController.chonAnh();
+        });
     }//GEN-LAST:event_lblhinhNVMouseClicked
 
     private void btndatlaiNvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndatlaiNvActionPerformed
@@ -2183,45 +2162,9 @@ public class MainPageFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tblNL_SPMouseClicked
 
     private void lblhinh_SPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblhinh_SPMouseClicked
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-
-        // Thiết lập bộ lọc để chỉ chọn các tệp ảnh
-        fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileFilter() {
-            @Override
-            public boolean accept(File f) {
-                if (f.isDirectory()) {
-                    return true;
-                }
-                String ext = getFileExtension(f);
-                return ext.equals("jpg") || ext.equals("jpeg") || ext.equals("png") || ext.equals("gif");
-            }
-
-            @Override
-            public String getDescription() {
-                return "Image files (*.jpg, *.jpeg, *.png, *.gif)";
-            }
-
-            private String getFileExtension(File f) {
-                String name = f.getName();
-                int lastIndex = name.lastIndexOf('.');
-                if (lastIndex == -1) {
-                    return "";
-                }
-                return name.substring(lastIndex + 1).toLowerCase();
-            }
+        runController(() -> {
+            ApplianceController.chonAnh();
         });
-
-        // Hiển thị hộp thoại chọn tệp
-        int result = fileChooser.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            String path = selectedFile.getAbsolutePath();
-
-            // Hiển thị hình ảnh được chọn
-            lblhinh_SP.setIcon(new ImageIcon(path));
-            lblhinh_SP.setToolTipText(path);
-        }
     }//GEN-LAST:event_lblhinh_SPMouseClicked
 
     private void txtTimHDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimHDKeyReleased

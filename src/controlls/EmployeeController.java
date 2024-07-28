@@ -6,9 +6,12 @@ package controlls;
 
 import daos.NhanVienDAO;
 import entities.NhanVien;
+import java.io.File;
 import java.util.List;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -19,6 +22,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import utils.MsgBox;
 import utils.XDate;
+import utils.XImage;
+import utils.XTable;
 
 /**
  *
@@ -49,6 +54,7 @@ public class EmployeeController {
     public static JButton btnThem;
     public static JButton btndatlai;
     public static JButton btnXoa;
+    private static File img;
 
     public static void initialize(JFrame frame, JTable table, JTextField txtManv,
             JTextField txtHoVaTen, JPasswordField txtmatkhau,
@@ -131,8 +137,9 @@ public class EmployeeController {
                     sp.getDiaChi()
                 };
                 model.addRow(row);
-                table.setModel(model);
             }
+            table.setModel(model);
+            XTable.insertImage(table, 0, 100, 100, "EmpImages");
         } catch (Exception e) {
             MsgBox.alert(frame, "Lỗi truy vấn dữ liệu!");
         }
@@ -145,39 +152,46 @@ public class EmployeeController {
 
     public static void insert() {
         NhanVien model = getForm();
-        try {
-            dao.insert(model);
-            fillTable();
-            clearForm();
-            MsgBox.alert(frame, "Thêm mới thành công!");
-        } catch (Exception e) {
-            MsgBox.alert(frame, "Thêm mới thất bại!");
+        File file = new File("EmpImages", model.getHinh());
+        if (!file.exists()) {
+            XImage.save("EmpImages", img);
+        } else {
+            MsgBox.alert(frame, "Ảnh đã tồn tại");
+            return;
         }
+        dao.insert(model);
+        fillTable();
+        clearForm();
+        MsgBox.inform(frame, "Thêm mới thành công!");
 
     }
 
     public static void update() {
         NhanVien model = getForm();
-        try {
-            dao.update(model);
-            fillTable();
-            MsgBox.alert(frame, "Cập nhật thành công!");
-        } catch (Exception e) {
-            MsgBox.alert(frame, "Cập nhật thất bại!");
+        NhanVien og = dao.selectByID(model.getMaNV());
+        if (!og.getHinh().equals(model.getHinh())) {
+            File file = new File("EmpImages", og.getHinh());
+            if (file.exists()) {
+                file.delete();
+            }
+            XImage.save("EmpImages", img);
         }
+        dao.update(model);
+        fillTable();
+        MsgBox.alert(frame, "Cập nhật thành công!");
     }
 
     public static void delete() {
 
         String MaNV = txtManv.getText();
-        try {
-            dao.delete(MaNV);
-            fillTable();
-            clearForm();
-            MsgBox.alert(frame, "Xóa thành công!");
-        } catch (Exception e) {
-            MsgBox.alert(frame, "Xóa thất bại!");
+        File file = new File("EmpImages", lblhinh.getToolTipText());
+        if (file.exists()) {
+            file.delete();
         }
+        dao.delete(MaNV);
+        fillTable();
+        clearForm();
+        MsgBox.alert(frame, "Xóa thành công!");
     }
 
     public static void clearForm() {
@@ -225,7 +239,13 @@ public class EmployeeController {
         txtsodienthoai_NV.setText(kh.getSDT());
         txtemail.setText(kh.getEmail());
         txtdiachi_NV.setText(kh.getDiaChi());
-        lblhinh.setText(kh.getHinh());
+        File file = new File("EmpImages", kh.getHinh());
+        if (!file.exists()) {
+            lblhinh.setText(kh.getHinh());
+        } else {
+            lblhinh.setIcon(XImage.getResized(XImage.read("EmpImages", kh.getHinh()), lblhinh.getWidth(), lblhinh.getHeight()));
+            lblhinh.setToolTipText(kh.getHinh());
+        }
     }
 
     public static NhanVien getForm() {
@@ -247,10 +267,11 @@ public class EmployeeController {
         sp.setSDT(txtsodienthoai_NV.getText());
         sp.setEmail(txtemail.getText());
         sp.setDiaChi(txtdiachi_NV.getText());
-        if(lblhinh.getIcon()==null){
-            sp.setHinh("Chưa có");
+        if (lblhinh.getIcon() == null) {
+            sp.setHinh("none");
+        } else {
+            sp.setHinh(lblhinh.getToolTipText());
         }
-        else sp.setHinh(lblhinh.getToolTipText());
         return sp;
     }
 
@@ -262,6 +283,47 @@ public class EmployeeController {
         btnThem.setEnabled(!edit);
         btncapnhat.setEnabled(edit);
         btnXoa.setEnabled(edit);
+    }
 
+    public static void chonAnh() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        // Thiết lập bộ lọc để chỉ chọn các tệp ảnh
+        fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                }
+                String ext = getFileExtension(f);
+                return ext.equals("jpg") || ext.equals("jpeg") || ext.equals("png") || ext.equals("gif");
+            }
+
+            @Override
+            public String getDescription() {
+                return "Image files (*.jpg, *.jpeg, *.png, *.gif)";
+            }
+
+            private String getFileExtension(File f) {
+                String name = f.getName();
+                int lastIndex = name.lastIndexOf('.');
+                if (lastIndex == -1) {
+                    return "";
+                }
+                return name.substring(lastIndex + 1).toLowerCase();
+            }
+        });
+
+        // Hiển thị hộp thoại chọn tệp
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+
+            // Hiển thị hình ảnh được chọn
+            lblhinh.setIcon(XImage.getResized(new ImageIcon(selectedFile.getAbsolutePath()), lblhinh.getWidth(), lblhinh.getHeight()));
+            lblhinh.setToolTipText(selectedFile.getName());
+            EmployeeController.img = selectedFile;
+        }
     }
 }

@@ -6,20 +6,26 @@ package controlls;
 
 import daos.NguyenLieuDao;
 import entities.NguyenLieu;
+import java.io.File;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import utils.MsgBox;
+import utils.XImage;
+import utils.XTable;
 
 /**
  *
  * @author ndhlt
  */
 public class ApplianceController {
+
     private static int curr = -1;
     private static final NguyenLieuDao dao = new NguyenLieuDao();
     public static JFrame frame;
@@ -35,6 +41,7 @@ public class ApplianceController {
     public static JButton btnthem_SP;
     public static JButton btnsua_SP;
     public static JButton btnxoa_SP;
+    private static File img;
 
     public static void initialize(JFrame frame, JTable tblNL_SP, JTextField txtmasp_KH, JTextField txtTSP_KH, JTextField txtDonVI_SP,
             JTextField txtGT_SP, JTextField txtTKHo_SP, JTextField txtTThieu_SP, JLabel lblhhinh_SP,
@@ -79,40 +86,48 @@ public class ApplianceController {
     }
 
     public static void fillTable() {
-        
+
         DefaultTableModel model = (DefaultTableModel) tblNL_SP.getModel();
         model.setRowCount(0);
         try {
             List<NguyenLieu> list = dao.selectAll();
             for (NguyenLieu sp : list) {
                 Object[] row = {
+                    sp.getHinh(),
                     sp.getMaNL(),
                     sp.getTenNL(),
                     sp.getGiaTien(),
                     sp.getTonKho(),
-                    sp.getDonVi(),
                     sp.getToiThieu(),
-                    sp.getHinh()
+                    sp.getDonVi()
                 };
                 model.addRow(row);
             }
+            XTable.insertImage(tblNL_SP, 0, 100, 100, "IngriImages");
         } catch (Exception e) {
             MsgBox.alert(frame, "Lỗi truy vấn dữ liệu!");
         }
     }
 
- public static void tableClick() {
-    curr = tblNL_SP.getSelectedRow();
-    if (curr >= 0) { 
-        edit();
-    } else {
-        MsgBox.alert(frame, "Dữ liệu không có sẳn!");
+    public static void tableClick() {
+        curr = tblNL_SP.getSelectedRow();
+        if (curr >= 0) {
+            edit();
+        } else {
+            MsgBox.alert(frame, "Dữ liệu không có sẳn!");
+        }
     }
- }
 
     public static void insert() {
         NguyenLieu model = getForm();
         try {
+            File file = new File("IngriImages", model.getHinh());
+            if (!file.exists()) {
+                XImage.save("IngriImages", img);
+            } else {
+                MsgBox.alert(frame, "Ảnh đã tồn tại");
+                return;
+            }
             dao.insert(model);
             fillTable();
             clearForm();
@@ -125,6 +140,12 @@ public class ApplianceController {
     public static void update() {
         NguyenLieu model = getForm();
         try {
+            NguyenLieu og = dao.selectByID(model.getMaNL());
+            if (!og.getHinh().equals(model.getHinh())) {
+                File ogFile = new File("IngriImages", og.getHinh());
+                ogFile.delete();
+                XImage.save("IngriImages", img);
+            }
             dao.update(model);
             fillTable();
             MsgBox.alert(frame, "Cập nhật thành công!");
@@ -136,6 +157,10 @@ public class ApplianceController {
     public static void delete() {
         String MaKH = txtmasp_KH.getText();
         try {
+            File file = new File("IngriImages", lblhhinh_SP.getToolTipText());
+            if (file.exists()) {
+                file.delete();
+            }
             dao.delete(MaKH);
             fillTable();
             clearForm();
@@ -159,10 +184,12 @@ public class ApplianceController {
     }
 
     public static void edit() {
-        String MaNL = (String) tblNL_SP.getValueAt(curr, 0);
-        NguyenLieu cd = dao.selectByID(MaNL);
-        setForm(cd);
-        updateStatus();
+        if (curr >= 0) {
+            String MaNL = (String) tblNL_SP.getValueAt(curr, 1);
+            NguyenLieu cd = dao.selectByID(MaNL);
+            setForm(cd);
+            updateStatus();
+        }
     }
 
     public static void setForm(NguyenLieu nl) {
@@ -171,7 +198,13 @@ public class ApplianceController {
         txtGT_SP.setText(String.valueOf(nl.getGiaTien()));
         txtTKHo_SP.setText(String.valueOf(nl.getTonKho()));
         txtTThieu_SP.setText(String.valueOf(nl.getToiThieu()));
-        lblhhinh_SP.setText(nl.getHinh());
+        File file = new File("IngriImages", nl.getHinh());
+        if (!file.exists()) {
+            lblhhinh_SP.setText(nl.getHinh());
+        } else {
+            lblhhinh_SP.setIcon(XImage.getResized(XImage.read("IngriImages", nl.getHinh()), lblhhinh_SP.getWidth(), lblhhinh_SP.getHeight()));
+            lblhhinh_SP.setToolTipText(nl.getHinh());
+        }
         txtDonVI_SP.setText(nl.getDonVi());
     }
 
@@ -193,5 +226,47 @@ public class ApplianceController {
         btnthem_SP.setEnabled(!edit);
         btnsua_SP.setEnabled(edit);
         btnxoa_SP.setEnabled(edit);
+    }
+
+    public static void chonAnh() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        // Thiết lập bộ lọc để chỉ chọn các tệp ảnh
+        fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                }
+                String ext = getFileExtension(f);
+                return ext.equals("jpg") || ext.equals("jpeg") || ext.equals("png") || ext.equals("gif");
+            }
+
+            @Override
+            public String getDescription() {
+                return "Image files (*.jpg, *.jpeg, *.png, *.gif)";
+            }
+
+            private String getFileExtension(File f) {
+                String name = f.getName();
+                int lastIndex = name.lastIndexOf('.');
+                if (lastIndex == -1) {
+                    return "";
+                }
+                return name.substring(lastIndex + 1).toLowerCase();
+            }
+        });
+
+        // Hiển thị hộp thoại chọn tệp
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+
+            // Hiển thị hình ảnh được chọn
+            lblhhinh_SP.setIcon(XImage.getResized(new ImageIcon(selectedFile.getAbsolutePath()), lblhhinh_SP.getWidth(), lblhhinh_SP.getHeight()));
+            lblhhinh_SP.setToolTipText(selectedFile.getName());
+            ApplianceController.img = selectedFile;
+        }
     }
 }

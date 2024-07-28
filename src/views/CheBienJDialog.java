@@ -467,7 +467,7 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
                     XImage.getPath(nl.getHinh()),};
                 model.addRow(row);
             }
-            XTable.insertImage(tblNguyenLieu, 2, 100, 100);
+            XTable.insertImage(tblNguyenLieu, 2, 100, 100, "IngriImages");
         } catch (Exception e) {
             MsgBox.alert(this, "Lỗi kết nối database !!");
         }
@@ -522,7 +522,7 @@ public class CheBienJDialog extends javax.swing.JDialog implements NguyenLieuCon
                     XImage.getPath(nl.getHinh()),};
                 model.addRow(row);
             }
-            XTable.insertImage(tblNguyenLieu, 2, 100, 100);
+            XTable.insertImage(tblNguyenLieu, 2, 100, 100, "IngriImages");
         } catch (Exception e) {
             MsgBox.alert(this, "Lỗi kết nối database !!");
         }

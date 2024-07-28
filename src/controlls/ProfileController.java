@@ -37,6 +37,7 @@ public class ProfileController {
     private static JTextField email;
     private static JTextArea DiaChi;
     private static JLabel Hinh;
+    private static File img;
 
     public static void initialize(JFrame frame, JTextField txtMaNv, JPasswordField txtPass, JTextField Name, JTextField ChucVu, JTextField NgaySinh,
             JRadioButton rdoNam, JRadioButton rdoNu, JTextField DienThoai, JTextField email, JTextArea DiaChi, JLabel Hinh) {
@@ -85,15 +86,18 @@ public class ProfileController {
         }
         DiaChi.setText(Auth.getUser().getDiaChi());
         if (Auth.getUser().getHinh() != null && !Auth.getUser().getHinh().isBlank()) {
-            Hinh.setIcon(XImage.getResized(XImage.read("EmpImages",Auth.getUser().getHinh()), Hinh.getWidth(), Hinh.getHeight()));
+            Hinh.setIcon(XImage.getResized(XImage.read("EmpImages", Auth.getUser().getHinh()), Hinh.getWidth(), Hinh.getHeight()));
             Hinh.setToolTipText(Auth.getUser().getHinh());
         }
     }
 
     public static void updateProfile() {
         if (checkInput()) {
-            File file = new File("EmpImages",Auth.getUser().getHinh());
-            file.delete();
+            if (!Auth.getUser().getHinh().equals(Hinh.getToolTipText())) {
+                File ogFile = new File("EmpImages", Auth.getUser().getHinh());
+                ogFile.delete();
+                XImage.save("EmpImages", img);
+            }
             Auth.getUser().setHoVaTen(Name.getText());
             Auth.getUser().setNgaySinh(XDate.toDate(NgaySinh.getText(), "dd/MM/yyyy"));
             Auth.getUser().setSDT(DienThoai.getText());
@@ -105,15 +109,42 @@ public class ProfileController {
             MsgBox.inform(frame, "Cập nhật thành công");
         }
     }
-    
-    public static void chonAnh(){
+
+    public static void chonAnh() {
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        // Thiết lập bộ lọc để chỉ chọn các tệp ảnh
+        fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                }
+                String ext = getFileExtension(f);
+                return ext.equals("jpg") || ext.equals("jpeg") || ext.equals("png") || ext.equals("gif");
+            }
+
+            @Override
+            public String getDescription() {
+                return "Image files (*.jpg, *.jpeg, *.png, *.gif)";
+            }
+
+            private String getFileExtension(File f) {
+                String name = f.getName();
+                int lastIndex = name.lastIndexOf('.');
+                if (lastIndex == -1) {
+                    return "";
+                }
+                return name.substring(lastIndex + 1).toLowerCase();
+            }
+        });
         if (fileChooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            XImage.save("EmpImages",file);
-            ImageIcon icon = XImage.getResized(XImage.read("EmpImages",file.getName()), Hinh.getWidth(), Hinh.getHeight());
+            ImageIcon icon = XImage.getResized(new ImageIcon(file.getAbsolutePath()), Hinh.getWidth(), Hinh.getHeight());
             Hinh.setIcon(icon);
             Hinh.setToolTipText(file.getName());
+            ProfileController.img = file;
         }
     }
 
@@ -143,7 +174,7 @@ public class ProfileController {
             DiaChi.requestFocus();
             return false;
         }
-        if(Hinh.getIcon()==null){
+        if (Hinh.getIcon() == null) {
             MsgBox.alert(frame, "Hình không được để trống");
             Hinh.requestFocus();
             return false;

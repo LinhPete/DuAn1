@@ -82,12 +82,12 @@ public final class XTable {
         table.setModel(model);
     }
 
-    public static void insertImage(JTable table, int column, int height, int width) {
+    public static void insertImage(JTable table, int column, int height, int width, String folder) {
         for (int i = 0; i < table.getModel().getRowCount(); i++) {
             table.setRowHeight(i, height);
         }
         table.getColumnModel().getColumn(column).setWidth(width);
-        table.getColumnModel().getColumn(column).setCellRenderer(new ImageRenderer());
+        table.getColumnModel().getColumn(column).setCellRenderer(new ImageRenderer(folder));
     }
     
     public class ImageTableModel extends DefaultTableModel {
@@ -105,8 +105,14 @@ public final class XTable {
     }
 }
 
-    private static class ImageRenderer extends DefaultTableCellRenderer {
+    public static class ImageRenderer extends DefaultTableCellRenderer {
+        
+        public String folder;
 
+        public ImageRenderer(String folder) {
+            this.folder = folder;
+        }
+        
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             // Gọi phương thức gốc để lấy thành phần hiển thị mặc định
@@ -121,7 +127,7 @@ public final class XTable {
                     int w = table.getColumnModel().getColumn(column).getWidth();
 
                     // Thiết lập hình ảnh cho JLabel trong thành phần hiển thị
-                    JLabel label = new JLabel(XImage.getResized(new ImageIcon(imagePath), w, h));
+                    JLabel label = new JLabel(XImage.getResized(XImage.read(folder, imagePath), w, h));
                     label.setHorizontalAlignment(JLabel.CENTER);
 
                     // Thiết lập thành phần hiển thị là JLabel chứa hình ảnh
