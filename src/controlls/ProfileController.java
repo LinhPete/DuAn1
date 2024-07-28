@@ -5,8 +5,11 @@
 package controlls;
 
 import daos.NhanVienDAO;
-import javax.swing.ButtonGroup;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
@@ -14,6 +17,7 @@ import javax.swing.JTextField;
 import utils.Auth;
 import utils.MsgBox;
 import utils.XDate;
+import utils.XImage;
 
 /**
  *
@@ -32,9 +36,10 @@ public class ProfileController {
     private static JTextField DienThoai;
     private static JTextField email;
     private static JTextArea DiaChi;
+    private static JLabel Hinh;
 
     public static void initialize(JFrame frame, JTextField txtMaNv, JPasswordField txtPass, JTextField Name, JTextField ChucVu, JTextField NgaySinh,
-            JRadioButton rdoNam, JRadioButton rdoNu, JTextField DienThoai, JTextField email, JTextArea DiaChi) {
+            JRadioButton rdoNam, JRadioButton rdoNu, JTextField DienThoai, JTextField email, JTextArea DiaChi, JLabel Hinh) {
         ProfileController.frame = frame;
         ProfileController.txtMaNv = txtMaNv;
         ProfileController.txtPass = txtPass;
@@ -46,10 +51,11 @@ public class ProfileController {
         ProfileController.DienThoai = DienThoai;
         ProfileController.email = email;
         ProfileController.DiaChi = DiaChi;
+        ProfileController.Hinh = Hinh;
     }
 
     public static void getComponents(JFrame frame, JTextField txtMaNv, JPasswordField txtPass, JTextField Name, JTextField ChucVu, JTextField NgaySinh,
-            JRadioButton rdoNam, JRadioButton rdoNu, JTextField DienThoai, JTextField email, JTextArea DiaChi) {
+            JRadioButton rdoNam, JRadioButton rdoNu, JTextField DienThoai, JTextField email, JTextArea DiaChi, JLabel Hinh) {
         frame = ProfileController.frame;
         txtMaNv = ProfileController.txtMaNv;
         txtPass = ProfileController.txtPass;
@@ -61,6 +67,7 @@ public class ProfileController {
         DienThoai = ProfileController.DienThoai;
         email = ProfileController.email;
         DiaChi = ProfileController.DiaChi;
+        Hinh = ProfileController.Hinh;
     }
 
     public static void setForm() {
@@ -77,17 +84,36 @@ public class ProfileController {
             rdoNu.setSelected(true);
         }
         DiaChi.setText(Auth.getUser().getDiaChi());
+        if (Auth.getUser().getHinh() != null && !Auth.getUser().getHinh().isBlank()) {
+            Hinh.setIcon(XImage.getResized(XImage.read("EmpImages",Auth.getUser().getHinh()), Hinh.getWidth(), Hinh.getHeight()));
+            Hinh.setToolTipText(Auth.getUser().getHinh());
+        }
     }
 
     public static void updateProfile() {
         if (checkInput()) {
+            File file = new File("EmpImages",Auth.getUser().getHinh());
+            file.delete();
             Auth.getUser().setHoVaTen(Name.getText());
             Auth.getUser().setNgaySinh(XDate.toDate(NgaySinh.getText(), "dd/MM/yyyy"));
             Auth.getUser().setSDT(DienThoai.getText());
             Auth.getUser().setEmail(email.getText());
             Auth.getUser().setDiaChi(DiaChi.getText());
             Auth.getUser().setGioiTinh(rdoNam.isSelected());
+            Auth.getUser().setHinh(Hinh.getToolTipText());
             new NhanVienDAO().update(Auth.getUser());
+            MsgBox.inform(frame, "Cập nhật thành công");
+        }
+    }
+    
+    public static void chonAnh(){
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            XImage.save("EmpImages",file);
+            ImageIcon icon = XImage.getResized(XImage.read("EmpImages",file.getName()), Hinh.getWidth(), Hinh.getHeight());
+            Hinh.setIcon(icon);
+            Hinh.setToolTipText(file.getName());
         }
     }
 
@@ -115,6 +141,11 @@ public class ProfileController {
         if (DiaChi.getText().isBlank()) {
             MsgBox.alert(frame, "Địa chỉ không được để trống");
             DiaChi.requestFocus();
+            return false;
+        }
+        if(Hinh.getIcon()==null){
+            MsgBox.alert(frame, "Hình không được để trống");
+            Hinh.requestFocus();
             return false;
         }
         return true;

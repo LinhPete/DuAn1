@@ -42,9 +42,10 @@ import utils.XJdbc;
 import utils.XDate;
 import utils.XImage;
 import utils.MsgBox;
+import utils.SubController;
 import utils.Validate;
 
-public class CreateOrdersJFrame extends javax.swing.JFrame implements BanHangController {
+public class CreateOrdersJFrame extends SubController implements BanHangController {
 
     SanPhamImple spdao = new SanPhamImple();
     List<SanPham> list;
@@ -683,7 +684,7 @@ public class CreateOrdersJFrame extends javax.swing.JFrame implements BanHangCon
     }//GEN-LAST:event_txtTienNhanKeyReleased
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        
+        returnWindow.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

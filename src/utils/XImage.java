@@ -20,7 +20,15 @@ public class XImage {
     }
     
     public static void save(File src){
-        File dst = new File("resources",src.getName());
+        File dst = new File("src/resources",src.getName());
+        if(!dst.getParentFile().exists()){
+            dst.getParentFile().mkdirs();
+        }
+        XFile.copyPaste(src, dst.getAbsolutePath());
+    }
+    
+    public static void save(String folder, File src){
+        File dst = new File(folder,src.getName());
         if(!dst.getParentFile().exists()){
             dst.getParentFile().mkdirs();
         }
@@ -28,7 +36,12 @@ public class XImage {
     }
     
     public static ImageIcon read(String fileName){
-        File path = new File("resources", fileName);
+        File path = new File("src/resources", fileName);
+        return new ImageIcon(path.getAbsolutePath());
+    }
+    
+    public static ImageIcon read(String folder, String fileName){
+        File path = new File(folder, fileName);
         return new ImageIcon(path.getAbsolutePath());
     }
     
@@ -38,7 +51,7 @@ public class XImage {
     }
     
     public static String getPath(String fileName){
-        File Path = new File("resources",fileName);
+        File Path = new File("src/resources",fileName);
         return Path.getAbsolutePath();
     }
 }

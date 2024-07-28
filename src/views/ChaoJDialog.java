@@ -47,7 +47,7 @@ public class ChaoJDialog extends javax.swing.JDialog {
         });
 
         lblLogo.setBackground(new java.awt.Color(255, 255, 255));
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Chào.jpg"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Chao.jpg"))); // NOI18N
         lblLogo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 102, 0), 1, true));
         lblLogo.setOpaque(true);
         getContentPane().add(lblLogo, java.awt.BorderLayout.CENTER);
